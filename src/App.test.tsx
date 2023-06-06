@@ -6,6 +6,7 @@ import App from './App'
 test('simple render', () => {
   render(<App />)
 
-  expect(screen.getByTestId('search')).toBeInTheDocument()
+  expect(screen.getByTestId('searchbar')).toBeInTheDocument()
   expect(screen.getByTestId('lucky')).toBeInTheDocument()
 })
+

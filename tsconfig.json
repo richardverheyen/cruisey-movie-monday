@@ -17,6 +17,9 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "useUnknownInCatchVariables": false,
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   }
 }
