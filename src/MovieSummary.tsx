@@ -53,6 +53,7 @@ export default function MovieSummary({shownMovieId, setShownMovieId} : Props) {
     <Dialog
       id="movie-summary"
       maxWidth="lg"
+      scroll="body"
       open={true}
       onClose={() => setShownMovieId(undefined)}
       aria-labelledby="dialog-title"
