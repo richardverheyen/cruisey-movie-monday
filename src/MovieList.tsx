@@ -7,7 +7,7 @@ export function MovieList({ movies }: { movies: [Movie] }) {
       <div className="gutters">
         <ul>
           {movies?.map((movie: Movie) => (
-            <li key={movie.id.toString()}>
+            <li key={movie.id?.toString()}>
               <MovieListItem movie={movie} />
             </li>
           ))}

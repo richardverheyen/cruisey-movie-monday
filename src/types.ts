@@ -5,7 +5,7 @@ type Movie = {
     name: String
     overview: String
     release_date: String
-    poster_path: String
+    poster_path: string
     backdrop_path: String
     runtime: Number
     homepage: String

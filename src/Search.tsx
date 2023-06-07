@@ -1,26 +1,35 @@
-import { useState } from "react";
+import { useState, SetStateAction } from "react";
 import TextField from "@mui/material/TextField";
-import InputAdornment from '@mui/material/InputAdornment';
-import CircularProgress from '@mui/material/CircularProgress';
+import InputAdornment from "@mui/material/InputAdornment";
+import CircularProgress from "@mui/material/CircularProgress";
 // import Button from "@mui/material/Button";
 import computer from "./assets/cruise-computer.png";
 import { ChangeEventHandler } from "react";
 import TomCruise from "./TomCruise";
 import { Button } from "@mui/material";
 
+type Props = {
+    handleQuery: ChangeEventHandler<HTMLInputElement>;
+    query: String;
+    loading: Boolean;
+    setCruiseOnly: React.Dispatch<React.SetStateAction<any>>;
+};
+
 export default function Search({
   handleQuery,
+  setCruiseOnly,
   query,
   loading,
-}: {
-  handleQuery: ChangeEventHandler<HTMLInputElement>;
-  query: String;
-  loading: Boolean;
-}) {
+}: Props) {
   const [tomVisible, setTomVisible] = useState(false);
 
   return (
-    <section id="search" style={{ backgroundImage: `url(${computer})` }}>
+    <section id="search">
+      <div
+        className="computer"
+        style={{ backgroundImage: `url(${computer})` }}
+      />
+
       <TomCruise tomVisible={tomVisible} />
 
       <div className="gutters">
@@ -38,11 +47,15 @@ export default function Search({
           data-testid="search-input"
           fullWidth
           InputProps={{
-            endAdornment: loading && <InputAdornment position="end"><CircularProgress size="24px" /></InputAdornment>,
+            endAdornment: loading && (
+              <InputAdornment position="end">
+                <CircularProgress size="24px" />
+              </InputAdornment>
+            ),
           }}
         />
-        <Button variant="outlined" fullWidth>
-          Just Tom Cruise
+        <Button onClick={() => setCruiseOnly(true)} variant="outlined" fullWidth>
+          Just Cruise
         </Button>
       </div>
     </section>
