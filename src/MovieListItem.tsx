@@ -1,13 +1,24 @@
+import { Dispatch, SetStateAction } from 'react';
+import { Movie } from "./types";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { Movie } from "./types";
 
-export function MovieListItem({movie}: {movie: Movie}) {
+type Props = {
+  movie: Movie;
+  setShownMovieId: Dispatch<SetStateAction<Number|undefined>>;
+};
+
+export function MovieListItem({movie, setShownMovieId}: Props) {
     return <Card sx={{height: "100%"}}>
-    <CardActionArea sx={{height: "100%", display: "flex", justifyContent: "flex-start", flexDirection: "column"}}>
+    <CardActionArea 
+      onClick={() => {
+        console.log(movie.id);
+        setShownMovieId(movie.id)}
+      }
+      sx={{height: "100%", display: "flex", justifyContent: "flex-start", flexDirection: "column"}}>
       <CardMedia
         component="div"
         sx={{ height: 400, width: "100%", backgroundPositionY: "15%" }}

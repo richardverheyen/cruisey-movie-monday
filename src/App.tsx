@@ -5,6 +5,8 @@ import Header from "./Header";
 import Search from "./Search";
 import { gql, useQuery } from "@apollo/client";
 import { toast } from "react-hot-toast";
+import MovieSummary from "./MovieSummary";
+
 
 export const GET_MOVIES_QUERY = gql`
   query searchMovies($query: String!) {
@@ -15,6 +17,7 @@ export const GET_MOVIES_QUERY = gql`
       results {
         id
         title
+        name
         release_date
         overview
         poster_path
@@ -28,6 +31,7 @@ export const GET_TOM_CRUISE_MOVIES = gql`
       cast {
         id
         title
+        name
         release_date
         overview
         poster_path
@@ -37,8 +41,9 @@ export const GET_TOM_CRUISE_MOVIES = gql`
 `;
 
 function App() {
-  const [query, setQuery] = useState("");
-  const [cruiseOnly, setCruiseOnly] = useState(false);
+  const [query, setQuery] = useState<String>("");
+  const [shownMovieId, setShownMovieId] = useState<Number | undefined>(undefined);
+  const [cruiseOnly, setCruiseOnly] = useState<Boolean>(false);
 
   const { loading, error, data } = useQuery(
     cruiseOnly ? GET_TOM_CRUISE_MOVIES : GET_MOVIES_QUERY,
@@ -71,7 +76,13 @@ function App() {
         setCruiseOnly={setCruiseOnly}
         loading={loading}
       />
-      <MovieList movies={prepareMoviesForList()} />
+
+      <MovieList movies={prepareMoviesForList()} setShownMovieId={setShownMovieId} />
+      { shownMovieId && 
+        <MovieSummary 
+          shownMovieId={shownMovieId} 
+          setShownMovieId={setShownMovieId} />
+      }
     </>
   );
 }

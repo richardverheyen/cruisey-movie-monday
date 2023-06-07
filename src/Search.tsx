@@ -59,6 +59,7 @@ export default function Search({
           }}
         />
         <Button
+          sx={{marginBottom: "80px"}}
           onClick={() => setCruiseOnly(true)}
           variant="outlined"
           fullWidth
