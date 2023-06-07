@@ -61,17 +61,21 @@ header {
 #movie-list {
   ul {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     width: calc(100% + 20px);
     padding: 0;
     margin-left: -20px;
+
+    @media (max-width: 500px) {
+      justify-content: center;
+    }
 
     li {
       list-style: none;
       width: calc(100% / 3 - 20px);
       max-width: 400px;
       margin-left: 20px;
+      margin-top: 20px;
 
       @media (max-width: 900px) {
         width: calc(100% / 2 - 20px);
@@ -82,4 +86,10 @@ header {
     }
   }
   
+  .overview {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
 }

@@ -13,6 +13,9 @@ export const GET_MOVIES_QUERY = gql`
             results {
                 id
                 title
+                release_date
+                overview
+                poster_path
             }
         }
     }
@@ -37,7 +40,6 @@ function App() {
         <h1>Cruisey Movie: Monday</h1>
       </header>
       <Search query={query} handleQuery={handleQuery} loading={loading} />
-
       <MovieList movies={data?.searchMovies.results} />
     </>
   )
