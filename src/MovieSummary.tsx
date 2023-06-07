@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import { toast } from "react-hot-toast";
 
 export const GET_MOVIE = gql`
   query searchMovies($id: ID!) {
@@ -40,7 +41,11 @@ export default function MovieSummary({shownMovieId, setShownMovieId} : Props) {
   );
 
   if (loading) return null;
-  console.log({data});
+  // console.log({data});
+
+  if (error) {
+    toast.error(`${error.name}: ${error.message}`)
+  }
 
   const { movie } = data;
 
