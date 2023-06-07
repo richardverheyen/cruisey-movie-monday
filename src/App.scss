@@ -1,0 +1,85 @@
+.gutters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1400px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  margin: auto;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  h1 {
+    font-family: "Impossible";
+    text-align: center;
+    text-transform: uppercase;
+    color: red;
+  }
+}
+
+#search {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  height: 600px;
+  margin: auto;
+  background-position: 0px 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  @media (min-width: 1100px) {
+    height: 700px;
+  }
+
+  > .gutters > * {
+    max-width: 360px;
+  }
+}
+
+#tom-cruise {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 100%;
+  transform: translateY(-100vh);
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(.34,1.14,.91,1);
+  pointer-events: none;
+
+  &.visible {
+    transform: translateY(0px);
+  }
+}
+
+#movie-list {
+  ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: calc(100% + 20px);
+    padding: 0;
+    margin-left: -20px;
+
+    li {
+      list-style: none;
+      width: calc(100% / 3 - 20px);
+      max-width: 400px;
+      margin-left: 20px;
+
+      @media (max-width: 900px) {
+        width: calc(100% / 2 - 20px);
+      }
+      @media (max-width: 500px) {
+        width: calc(100% / 1 - 20px);
+      }
+    }
+  }
+  
+}

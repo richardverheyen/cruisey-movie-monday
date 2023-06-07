@@ -1,50 +1,44 @@
 import { ChangeEvent, useState } from 'react'
-import './App.css'
+import './App.scss'
 import { MovieList } from "./MovieList";
 import Search from "./Search"
+import { gql, useQuery } from "@apollo/client";
+
+export const GET_MOVIES_QUERY = gql`
+    query searchMovies($query: String!) {
+        searchMovies(query: $query, page: 1) {
+            page
+            total_results
+            total_pages
+            results {
+                id
+                title
+            }
+        }
+    }
+`;
 
 function App() {
-
   const [query, setQuery] = useState("");
+
+  const { loading, error, data } = useQuery(GET_MOVIES_QUERY, {
+    variables: { query }
+  });
 
   function handleQuery(e: ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value)
   }
 
+  console.log({data});
+
   return (
     <>
-      <div style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "300px",
-        height: "200px",
-        padding: "8px",
-        background: "#7a7da5",
-        border: "5px solid #cbcbcb",
-      }}>
-        <p
-          style={{
-            background: "grey",
-            textAlign: "center",
-            color: "white",
-            textTransform: "uppercase",
-            fontSize: "12px"
-          }}>
-            download progress window
-          </p>
-        <p
-          style={{
-            background: "green",
-            textAlign: "center",
-            textTransform: "uppercase",
-            fontSize: "12px"
-          }}>
-            download successfully completed
-          </p>
-      </div>
-      <Search query={query} handleQuery={handleQuery} />
-      <MovieList query={query} />
+      <header>
+        <h1>Cruisey Movie: Monday</h1>
+      </header>
+      <Search query={query} handleQuery={handleQuery} loading={loading} />
+
+      <MovieList movies={data?.searchMovies.results} />
     </>
   )
 }

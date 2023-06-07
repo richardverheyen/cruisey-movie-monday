@@ -3,5 +3,5 @@ import { Movie } from "./types";
 
 
 export function MovieListItem({movie}: {movie: Movie}) {
-    return <p>{movie.name}</p>
+    return <p>{movie.title}</p>
   }
