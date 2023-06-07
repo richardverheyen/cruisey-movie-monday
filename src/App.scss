@@ -73,6 +73,10 @@ header {
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(.34,1.14,.91,1);
   pointer-events: none;
+  
+  @media (max-width: 500px) {
+    transition-duration: 3s;
+  }
 
   &.visible {
     transform: translateY(0px);
