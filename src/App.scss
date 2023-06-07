@@ -15,12 +15,26 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  h1 {
-    font-family: "Impossible";
-    text-align: center;
-    text-transform: uppercase;
-    color: #c20000;
+  z-index: 1;
+    h1 {
+      font-family: "Impossible";
+      text-align: center;
+      text-transform: uppercase;
+      color: #c20000;
+    }
+  
+    a {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      > img {
+        width: 26px;
+        cursor: pointer;
+      }
   }
+  
 }
 
 #search {

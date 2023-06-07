@@ -1,9 +1,10 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.scss";
 import { MovieList } from "./MovieList";
+import Header from "./Header";
 import Search from "./Search";
 import { gql, useQuery } from "@apollo/client";
-import { Movie } from "./types";
+import { toast } from "react-hot-toast";
 
 export const GET_MOVIES_QUERY = gql`
   query searchMovies($query: String!) {
@@ -37,7 +38,7 @@ export const GET_TOM_CRUISE_MOVIES = gql`
 
 function App() {
   const [query, setQuery] = useState("");
-  const [cruiseOnly, setCruiseOnly] = useState(true);
+  const [cruiseOnly, setCruiseOnly] = useState(false);
 
   const { loading, error, data } = useQuery(
     cruiseOnly ? GET_TOM_CRUISE_MOVIES : GET_MOVIES_QUERY,
@@ -49,14 +50,6 @@ function App() {
     }
   );
 
-  useEffect(() => {
-    setCruiseOnly(false);
-  }, [query]);
-
-  function handleQuery(e: ChangeEvent<HTMLInputElement>) {
-    setQuery(e.target.value);
-  }
-
   function prepareMoviesForList() {
     if (cruiseOnly) {
       return data?.person?.cast;
@@ -65,14 +58,16 @@ function App() {
     }
   }
 
+  if (error) {
+    toast.error(`${error.name}: ${error.message}`)
+  }
+
   return (
     <>
-      <header>
-        <h1>Cruisey Movie: Monday</h1>
-      </header>
+      <Header />
       <Search
         query={query}
-        handleQuery={handleQuery}
+        setQuery={setQuery}
         setCruiseOnly={setCruiseOnly}
         loading={loading}
       />

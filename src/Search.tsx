@@ -1,27 +1,31 @@
-import { useState, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, ChangeEvent } from "react";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import CircularProgress from "@mui/material/CircularProgress";
 // import Button from "@mui/material/Button";
 import computer from "./assets/cruise-computer.png";
-import { ChangeEventHandler } from "react";
 import TomCruise from "./TomCruise";
 import { Button } from "@mui/material";
 
 type Props = {
-    handleQuery: ChangeEventHandler<HTMLInputElement>;
-    query: String;
-    loading: Boolean;
-    setCruiseOnly: React.Dispatch<React.SetStateAction<any>>;
+  setQuery: Dispatch<SetStateAction<any>>;
+  query: String;
+  loading: Boolean;
+  setCruiseOnly: Dispatch<SetStateAction<any>>;
 };
 
 export default function Search({
-  handleQuery,
+  setQuery,
   setCruiseOnly,
   query,
   loading,
 }: Props) {
   const [tomVisible, setTomVisible] = useState(false);
+
+  function handleQuery(e: ChangeEvent<HTMLInputElement>) {
+    setQuery(e.target.value);
+    setCruiseOnly(false);
+  }
 
   return (
     <section id="search">
@@ -54,7 +58,11 @@ export default function Search({
             ),
           }}
         />
-        <Button onClick={() => setCruiseOnly(true)} variant="outlined" fullWidth>
+        <Button
+          onClick={() => setCruiseOnly(true)}
+          variant="outlined"
+          fullWidth
+        >
           Just Cruise
         </Button>
       </div>
