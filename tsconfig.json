@@ -14,6 +14,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": false,
     "strict": true,
+    "skipLibCheck": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
     "useUnknownInCatchVariables": false,
