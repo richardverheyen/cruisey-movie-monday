@@ -115,3 +115,15 @@ header {
     overflow: hidden;
   }
 }
+
+#movie-summary {
+  figure {
+    display: inline;
+    float: right;
+    max-width: 200px;
+
+    > img {
+      width: 100%;
+    }
+  }
+}

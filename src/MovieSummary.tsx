@@ -15,10 +15,11 @@ export const GET_MOVIE = gql`
       name
       runtime
       homepage
-      popularity
       release_date
       overview
       poster_path
+      vote_average
+      popularity
     }
   }
 `;
@@ -45,6 +46,7 @@ export default function MovieSummary({shownMovieId, setShownMovieId} : Props) {
 
   return (
     <Dialog
+      id="movie-summary"
       maxWidth="lg"
       open={true}
       onClose={() => setShownMovieId(undefined)}
@@ -55,12 +57,28 @@ export default function MovieSummary({shownMovieId, setShownMovieId} : Props) {
         {movie.title || movie.name || ""}
       </DialogTitle>
       <DialogContent>
+        <figure>
+          <img src={movie.poster_path} alt="Movie poster" />
+        </figure>
         <DialogContentText>
-          {movie.overview}
+          <b>Release Year:</b> {new Date(movie.release_date?.toString()).getFullYear() || ""}
         </DialogContentText>
+        <DialogContentText>
+          <b>Length:</b> {movie.runtime} minutes
+        </DialogContentText>
+        <DialogContentText>
+          <b>Summary:</b> {movie.overview}
+        </DialogContentText>
+        <DialogContentText>
+          <b>Popularity:</b> {movie.popularity.toFixed(2)} / 100
+        </DialogContentText>
+        <DialogContentText>
+          <b>Vote Average:</b> {movie.vote_average.toFixed(2)} / 10
+        </DialogContentText>
+
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setShownMovieId(undefined)}>Disagree</Button>
+        <Button><a target="_blank" href={movie.homepage}>Website</a></Button>
         <Button onClick={() => setShownMovieId(undefined)} autoFocus>
           Close
         </Button>

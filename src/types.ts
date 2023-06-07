@@ -8,6 +8,8 @@ type Movie = {
     poster_path: string
     backdrop_path: String
     runtime: Number
+    popularity: Number
+    vote_average: Number
     homepage: String
     genres: [Genre]
     recommendations: [Movie]
