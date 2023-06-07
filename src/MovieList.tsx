@@ -21,6 +21,7 @@ export function MovieList({ movies, setShownMovieId }: Props) {
             </li>
           ))}
         </ul>
+        {/* pagination would go here */}
       </div>
     </section>
   );

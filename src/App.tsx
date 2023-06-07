@@ -45,6 +45,7 @@ function App() {
   const [shownMovieId, setShownMovieId] = useState<Number | undefined>(undefined);
   const [cruiseOnly, setCruiseOnly] = useState<Boolean>(false);
 
+  // Option for pagination here, but no time for that today
   const { loading, error, data } = useQuery(
     cruiseOnly ? GET_TOM_CRUISE_MOVIES : GET_MOVIES_QUERY,
     {

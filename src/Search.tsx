@@ -39,6 +39,7 @@ export default function Search({
       <div className="gutters">
         <TextField
           id="search-input"
+          data-testid="search-input"
           variant="outlined"
           autoComplete="off"
           size="small"
@@ -48,7 +49,6 @@ export default function Search({
           onMouseEnter={() => setTomVisible(true)}
           onMouseLeave={() => setTomVisible(false)}
           value={query}
-          data-testid="search-input"
           fullWidth
           InputProps={{
             endAdornment: loading && (
@@ -59,6 +59,7 @@ export default function Search({
           }}
         />
         <Button
+          data-testid="cruise"
           sx={{marginBottom: "80px"}}
           onClick={() => setCruiseOnly(true)}
           variant="outlined"
